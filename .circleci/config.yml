@@ -1,31 +1,17 @@
-version: 2.1
+version: 2.1 
+orbs:
+  node: circleci/node@1.1.6
 jobs:
-  build:
-    docker:
-      - image: circleci/node:lts
+  build-and-test:
+    executor:
+      name: node/default
     steps:
       - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            yarn --frozen-lockfile
-  pack:
-    docker:
-      - image: circleci/node:lts
-    steps:
-      - checkout
-      - run:
-          name: Install dependencies
-          command: |
-            yarn --frozen-lockfile
-      - run:
-          name: compiles
-          command: |
-            yarn run
+      - node/with-cache:
+          steps:
+            - run: npm install
+            - run: npm test
 workflows:
-  build-and-package:
-    jobs:
-      - build
-      - pack:
-          requires:
-            - build
+    build-and-test:
+      jobs:
+        - build-and-test
