@@ -11,7 +11,18 @@ jobs:
           steps:
             - run: npm install
             - run: npm test
+  pack:
+    executor:
+      name: node/default
+    steps:
+      - checkout
+      - run:
+          name: Publish package
+          command: npm publish
 workflows:
     build-and-test:
       jobs:
         - build-and-test
+        - pack:
+            requires:
+              - build-and-test
