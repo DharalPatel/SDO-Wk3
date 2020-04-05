@@ -23,6 +23,8 @@ jobs:
       - run:
           name: Publish package
           command: npm pack
+      - store_artifacts:
+          path: dist
 workflows:
     build-and-test:
       jobs:
