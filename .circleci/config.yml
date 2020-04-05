@@ -26,8 +26,8 @@ jobs:
     steps:
     - checkout
     - install_deps
-      - store_artifacts:
-          path: ./
+    - store_artifacts:
+        path: ./
 
 workflows:
     build-and-test:
