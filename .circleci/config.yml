@@ -30,3 +30,7 @@ workflows:
         - pack:
             requires:
               - build-and-test
+            filters:
+              branches:
+                only:
+                  - master
