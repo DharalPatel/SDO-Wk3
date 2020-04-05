@@ -22,7 +22,7 @@ jobs:
             - run: npm test
       - run:
           name: Publish package
-          command: npm publish
+          command: npm pack
 workflows:
     build-and-test:
       jobs:
