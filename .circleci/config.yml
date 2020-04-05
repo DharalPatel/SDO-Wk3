@@ -14,10 +14,7 @@ jobs:
     steps:
       - checkout
       - install_deps
-      - run:
-          name: run tests
-          command: |
-            npm tests
+      - run: npm test
   pack:
     docker:
       - image: circleci/node:lts
